@@ -1,0 +1,53 @@
+version: '3'
+services:
+  config:
+    image: quay.io/redhat/quay:v3.1.3
+    container_name: config
+    restart: always
+    privileged: true
+    links:
+      - mysql
+      - redis
+    networks:
+      - quay
+    ports:
+      - 8443:8443
+    environment:
+      - DEBUGLOG=false
+    command:
+      ["config", "redhat"]
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: registry.redhat.io/rhscl/mysql-57-rhel7
+    container_name: mysql
+    restart: always
+    privileged: true
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql/data:Z
+    networks:
+      - quay
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=redhat
+      - MYSQL_DATABASE=enterpriseregistrydb
+      - MYSQL_USER=quayuser
+      - MYSQL_PASSWORD=redhat
+  redis:
+    image: registry.access.redhat.com/rhscl/redis-32-rhel7
+    container_name: redis
+    restart: always
+    privileged: true
+    volumes:
+      - /var/lib/redis:/var/lib/redis/data:Z
+    networks:
+      - quay
+    ports:
+      - 6379:6379
+    depends_on:
+      - mysql
+networks:
+  quay:
+    external: false
