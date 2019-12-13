@@ -20,7 +20,7 @@ services:
       - mysql
       - redis
   mysql:
-    image: registry.redhat.io/rhscl/mysql-57-rhel7
+    image: registry.access.redhat.com/rhscl/mysql-57-rhel7
     container_name: mysql
     restart: always
     privileged: true
