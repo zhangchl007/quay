@@ -14,4 +14,7 @@ tar -zxvf quay-config.tar.gz
 4. docker-compose  -f docker-compose.config.yml stop
 5. docker-compose  -f docker-compose.quay.yml up -d
 
+#clear Quay
+sh clear-quay.sh
+
 ```
