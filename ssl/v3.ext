@@ -5,4 +5,4 @@ extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
 [alt_names]
 DNS.1=test.com
-DNS.2=qua01.test.com
+DNS.2=quay01.test.com

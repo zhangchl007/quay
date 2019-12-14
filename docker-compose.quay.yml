@@ -1,7 +1,7 @@
 version: '3'
 services:
   quay:
-    image: quay.io/redhat/quay:v3.1.3
+    image: docker.io/zhangchl007/quay:devel
     container_name: quay
     restart: always
     privileged: true
@@ -14,9 +14,9 @@ services:
       - quay
     ports:
       - 443:8443
-      - 80:8080
     environment:
       - DEBUGLOG=false
+      - ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation
     depends_on:
       - mysql
       - redis
