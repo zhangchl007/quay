@@ -8,25 +8,27 @@ If it's quay enterprise, you can remove the environment varible from docker-comp
 self-cert-generate.sh test.com quay01.test.com
 
 # Deploy Quay
-#create Directory for Quay
-1. sh pre-quaydeploy.sh
+# create Directory for Quay
+sudo sh pre-quaydeploy.sh
 
-# generate the config file
+# generate the quayconfig container
+sudo docker-compose  -f docker-compose.config.yml  up -d
 
-2. docker-compose  -f docker-compose.config.yml  up -d
+# generate config file via web GUI
 username/password: quayconfig/redhat
 sudo mv quay-config.tar.gz  /quay/config
 cd /quay/config && tar -zxvf quay-config.tar.gz
 
-#delete quayconfig container
-3. sh ./pre-deleteconfig.sh
+# delete the quayconfig container
+sudo sh ./pre-deleteconfig.sh
 
-#stop redis and mysql and start quay
+# stop redis and mysql
+sudo docker-compose  -f docker-compose.config.yml stop
 
-4. docker-compose  -f docker-compose.config.yml stop
-5. docker-compose  -f docker-compose.quay.yml up -d
+# start mysql, redis and quay
+sudo docker-compose  -f docker-compose.quay.yml up -d
 
-#clear Quay
+# clean up  Quay
 sh clear-quay.sh
 
 ```
