@@ -1,8 +1,9 @@
 # docker-compose for redhat quay 
 ```
 Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation"
-to support quay development 
+to support quay development. please refer to the doc below 
 
+https://github.com/quay/quay/blob/master/docs/development-container.md
 If it's quay enterprise, you can remove the environment varible from docker-compose yaml file
 
 # generate self certification 
