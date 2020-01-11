@@ -18,7 +18,7 @@ Please refer to the official doc below.
 ## Quay Deployment
 ```
 # Generate self certification 
-self-cert-generate.sh test.com quay01.test.com
+./self-cert-generate.sh test.com registry.test01.com test01.com test01
 
 # Deploy Quay
 # create Directory for Quay
