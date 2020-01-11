@@ -4,8 +4,9 @@ It's a docker-compose Poc quick solution for Quay community and enterprise
 
 Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation"
 
-to support Quay development. If it's Quay enterprise, you may remove this environment varible from docker-compose yaml file, 
-Please refer to the doc below.
+to support Quay development. If you adopt the Quay enterprise, you may contact with Jimmy Zhang, 
+Please refer to the link below.
+[Quay HA](https://github.com/zhangchl007/quay-ha)
 
 [Quay Image Build](https://github.com/quay/quay/blob/master/docs/development-container.md)
 
