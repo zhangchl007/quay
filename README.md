@@ -17,6 +17,8 @@ For Clair Deployment, Please revise clair-config/config.yaml based on your real 
 Please refer to the official doc below.
 
 [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
+
+[Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
 ## Quay Deployment
 ```
 # Generate self certification 
