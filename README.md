@@ -51,5 +51,13 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 #for pgsql
 sudo docker-compose  -f docker-compose.quay-pgsql.yml up -d
 
+# Verify the Clair service 
+
+$  curl -X GET -I http://172.31.0.65:6061/health
+HTTP/1.1 200 OK
+Server: clair
+Date: Sat, 11 Jan 2020 11:21:24 GMT
+Content-Length: 0
+
 # Clean up Quay
 sh clear-quay.sh
