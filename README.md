@@ -1,6 +1,6 @@
 # docker-compose for Red Hat Quay 
 
-It's a docker-compose Poc quick solution for Quay community and enterprise 
+It's a docker-compose for Quay community/enterprise POC quick solution 
 
 Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation"
 
