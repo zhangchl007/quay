@@ -19,6 +19,7 @@ subjectAltName = @alt_names
 [alt_names]
 DNS.1=$1
 DNS.2=$2
+DNS.3=$3
 EOF
 
 openssl x509 -req -sha512 -days 3650 \
@@ -28,13 +29,13 @@ openssl x509 -req -sha512 -days 3650 \
     -out $1.crt
 }
 
-if [ $# != 2 ];then
+if [ $# != 3 ];then
     echo "Please input the right domain name and  hostname!"
     exit 1
-elif [ -z $1 ] || [ -z $2 ];then
+elif [ -z $1 ] || [ -z $2 ] || [ -z $3 ];then
         echo "Please input the right domain name and  hostname!"
         exit 1
 else
-   Sub_make_ca $1 $2
+   Sub_make_ca $1 $2 $3
    exit 0
 fi

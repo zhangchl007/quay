@@ -1,0 +1,54 @@
+version: '3'
+services:
+  quay:
+    image: quay.io/redhat/quay:v3.2.0
+    container_name: quay
+    restart: always
+    privileged: true
+    sysctls:
+      - net.core.somaxconn=4096
+    volumes:
+      - /quay/config:/conf/stack:Z
+      - /quay/storage:/datastorage:Z
+    networks:
+      - quay
+    ports:
+      - 443:8443
+    environment:
+      - DEBUGLOG=false
+      - ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation
+    depends_on:
+      - pgsql
+      - redis
+  pgsql:
+    image: registry.access.redhat.com/rhscl/postgresql-96-rhel7
+    container_name: pgsql
+    restart: always
+    privileged: true
+    volumes:
+      - /var/lib/pgsql/data:/var/lib/pgsql/data:Z
+      - ./post-pgsql.sh:/usr/local/bin/post-pgsql.sh
+    networks:
+      - quay
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USER=quayuser
+      - POSTGRESQL_PASSWORD=quaypass
+      - POSTGRESQL_DATABASE=quaydb
+  redis:
+    image: registry.access.redhat.com/rhscl/redis-32-rhel7
+    container_name: redis
+    restart: always
+    privileged: true
+    volumes:
+      - /var/lib/redis:/var/lib/redis/data:Z
+    networks:
+      - quay
+    ports:
+      - 6379:6379
+    depends_on:
+      - pgsql
+networks:
+  quay:
+    external: false

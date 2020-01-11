@@ -1,0 +1,21 @@
+version: '3'
+services:
+  dns01:
+    image: jpillora/dnsmasq
+    container_name: dns01
+    restart: always
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+    cap_add:
+            - NET_ADMIN
+    networks:
+      - quay
+    ports:
+      - "53:53/udp"
+      - 5380:8080
+    environment:
+      - HTTP_USER=foo
+      - HTTP_PASS=bar
+networks:
+  quay:
+    external: false
