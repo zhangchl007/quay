@@ -27,7 +27,7 @@ clair:
       http:
         # QUAY_ENDPOINT defines the endpoint at which Quay is running.
         # For example: https://myregistry.mycompany.com
-        endpoint: https://registry.xkgs.gd.csg.local/secscan/notify
+        endpoint: https://registry.test01.com/secscan/notify
         proxy: http://localhost:6063
 
 jwtproxy:
@@ -51,7 +51,7 @@ jwtproxy:
             options:
               # QUAY_ENDPOINT defines the endpoint at which Quay is running.
               # For example: https://myregistry.mycompany.com
-              registry: https://registry.xkgs.gd.csg.local/keys/
+              registry: https://registry.test01.com/keys/
 
 
   verifier_proxies:
@@ -76,4 +76,4 @@ jwtproxy:
         options:
           # QUAY_ENDPOINT defines the endpoint at which Quay is running.
           # Example: https://myregistry.mycompany.com
-          registry: https://registry.xkgs.gd.csg.local/keys/
+          registry: https://registry.test01.com/keys/
