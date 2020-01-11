@@ -4,7 +4,7 @@ It's a docker-compose for Quay community/enterprise POC quick solution
 
 Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation"to support Quay community.
 
-If you adopt the Quay enterprise, you may contact with Jimmy Zhang,Please refer to the following link:
+If you adopt the Quay HA, Please refer to the following link:
 [Quay HA](https://github.com/zhangchl007/quay-ha)
 
 Quay Dockerfile
