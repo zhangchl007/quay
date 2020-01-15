@@ -62,5 +62,15 @@ Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 
+# Clair Vulnerability data update
+docker logs -f clair
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"alpine.go:52","Time":"2020-01-15 00:15:15.018816","package":"Alpine"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"amzn.go:84","Time":"2020-01-15 00:15:15.027833","package":"Amazon Linux 2018.03"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"amzn.go:84","Time":"2020-01-15 00:15:15.027953","package":"Amazon Linux 2"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"debian.go:63","Time":"2020-01-15 00:15:15.028194","package":"Debian"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"oracle.go:119","Time":"2020-01-15 00:15:15.029828","package":"Oracle Linux"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"rhel.go:92","Time":"2020-01-15 00:15:15.030014","package":"RHEL"}
+{"Event":"Start fetching vulnerabilities","Level":"info","Location":"ubuntu.go:85","Time":"2020-01-15 00:15:15.030192","package":"Ubuntu"}
+
 # Clean up Quay
 sh clear-quay.sh
