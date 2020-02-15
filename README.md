@@ -13,6 +13,11 @@ Quay Dockerfile
 
 For Clair Deployment, Please revise clair-config/config.yaml based on your real environment.
 
+Notes: you have to deploy DNS for Quay and Clair, for example: 
+``
+quay01.test.com
+clair.test.com`
+```
 Please refer to the official doc below.
 
 [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
@@ -35,18 +40,24 @@ sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
 sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
 
 # Generate config file via web GUI
+For example: http://quay01.test.com/8443
 username/password: quayconfig/redhat
+
+# Set pgsql db connection
+![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
+
+# Set username/password
+![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/username.png)
+
+# Set Download Quay config file
+![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/config.png)
+
+# upload the Quay config file and uncompress it
 sudo mv quay-config.tar.gz  /quay/config
 cd /quay/config && tar -zxvf quay-config.tar.gz
 
-# Delete the quayconfig container
+# Delete the quayconfig and Stop redis and mysql/pgsqlcontainer
 sudo sh ./pre-deleteconfig.sh
-
-# Stop redis and mysql/pgsql
-#for mysql
-sudo docker-compose  -f docker-compose.config-mysql.yml stop
-#pgsql
-sudo docker-compose  -f docker-compose.config-pgsql.yml stop
 
 # Start mysql, redis and Quay
 #for mysql
@@ -55,22 +66,14 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 sudo docker-compose  -f docker-compose.quay-pgsql.yml up -d
 
 # Verify the Clair service 
-
 $  curl -X GET -I http://172.31.0.65:6061/health
 HTTP/1.1 200 OK
 Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 
-# Clair Vulnerability data update
-docker logs -f clair
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"alpine.go:52","Time":"2020-01-15 00:15:15.018816","package":"Alpine"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"amzn.go:84","Time":"2020-01-15 00:15:15.027833","package":"Amazon Linux 2018.03"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"amzn.go:84","Time":"2020-01-15 00:15:15.027953","package":"Amazon Linux 2"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"debian.go:63","Time":"2020-01-15 00:15:15.028194","package":"Debian"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"oracle.go:119","Time":"2020-01-15 00:15:15.029828","package":"Oracle Linux"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"rhel.go:92","Time":"2020-01-15 00:15:15.030014","package":"RHEL"}
-{"Event":"Start fetching vulnerabilities","Level":"info","Location":"ubuntu.go:85","Time":"2020-01-15 00:15:15.030192","package":"Ubuntu"}
+# Check the status of images Scan 
+![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
 # Clean up Quay
 sh clear-quay.sh
