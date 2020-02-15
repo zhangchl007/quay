@@ -22,6 +22,7 @@ Notes:
 
 2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
+
   Please refer to the config file below:
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
@@ -84,9 +85,10 @@ HTTP/1.1 200 OK
 Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
+```
 
 # Check the status of images Scan
-![image status](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
+![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
 ```
 # Clean up Quay
