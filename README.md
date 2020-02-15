@@ -27,7 +27,7 @@ Notes:
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
-3. For clair HA , you have to create a Key ID and Private Key (PEM). Please refer to config below::
+3. For clair HA , Please create a Key ID and Private Key (PEM). Please refer to config below::
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
@@ -37,7 +37,7 @@ Notes:
 
       private_key_path: /clair/config/security_scanner.pem
 
-   For the partner integretion, Please refer to the official doc below.
+4. For the partner integretion, Please refer to the official doc below.
 
    [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
 
