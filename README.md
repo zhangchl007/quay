@@ -23,11 +23,12 @@ Notes:
 2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
   Please refer to the config file below:
-  [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
+
+     [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
 3. For clair HA , you have to create a Key ID and Private Key (PEM). Please refer to config below::
 
-  [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
+     [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
    For the partner integretion, Please refer to the official doc below.
 
@@ -86,6 +87,7 @@ Content-Length: 0
 
 # Check the status of images Scan
 ![image status](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
+
 ```
 # Clean up Quay
 sh clear-quay.sh
