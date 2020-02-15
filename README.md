@@ -37,7 +37,7 @@ sudo docker-compose  -f docker-compose.config-mysql.yml up -d
 #for pgsql
 sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
 sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
-
+```
 # Generate config file via web GUI
 For example: http://quay01.test.com/8443
 username/password: quayconfig/redhat
@@ -51,6 +51,7 @@ username/password: quayconfig/redhat
 # Download Quay config file
 ![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
+```
 # upload the Quay config file and uncompress it
 sudo mv quay-config.tar.gz  /quay/config
 cd /quay/config && tar -zxvf quay-config.tar.gz
