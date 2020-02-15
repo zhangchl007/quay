@@ -11,27 +11,29 @@ Quay Dockerfile
 
 [Quay Image Build](https://github.com/quay/quay/blob/master/docs/development-container.md)
 
-For Clair Deployment, Please revise clair-config/config.yaml based on your real environment.
+For Clair Deployment, please revise clair-config/config.yaml based on your real environment.
 
 Notes:
-1. you have to deploy DNS for Quay and Clair, for example:
+1. Deploy DNS for Quay and Clair, for example:
 
    quay01.test.com
 
    clair.test.com`
 
-2. For single clair , Don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
+2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
+  Please refer to the config file below:
+  [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
-3. For clair HA , You have to create a Key ID and Private Key (PEM). for example:
+3. For clair HA , you have to create a Key ID and Private Key (PEM). Please refer to config below::
 
-wget https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha
+  [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
-Please refer to the official doc below.
+   For the partner integretion, Please refer to the official doc below.
 
-[Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
+   [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
 
-[Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
+   [Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
 ## Quay Deployment
 ```
 # Generate self certification
@@ -53,13 +55,13 @@ For example: http://quay01.test.com/8443
 username/password: quayconfig/redhat
 
 # Set pgsql db connection
-![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
+![dbconn](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
 
 # Set username/password
-![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/username.png)
+![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
 # Download Quay config file
-![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/config.png)
+![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 ```
 # upload the Quay config file and uncompress it
@@ -81,10 +83,9 @@ HTTP/1.1 200 OK
 Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
-```
-# Check the status of images Scan
-![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
+# Check the status of images Scan
+![image status](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 ```
 # Clean up Quay
 sh clear-quay.sh
