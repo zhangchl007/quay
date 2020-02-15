@@ -14,10 +14,9 @@ Quay Dockerfile
 For Clair Deployment, Please revise clair-config/config.yaml based on your real environment.
 
 Notes: you have to deploy DNS for Quay and Clair, for example: 
-``
 quay01.test.com
 clair.test.com`
-```
+
 Please refer to the official doc below.
 
 [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
@@ -49,7 +48,7 @@ username/password: quayconfig/redhat
 # Set username/password
 ![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
-# Set Download Quay config file
+# Download Quay config file
 ![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 # upload the Quay config file and uncompress it
@@ -77,3 +76,4 @@ Content-Length: 0
 
 # Clean up Quay
 sh clear-quay.sh
+```
