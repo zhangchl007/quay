@@ -71,10 +71,11 @@ HTTP/1.1 200 OK
 Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
-
+```
 # Check the status of images Scan 
 ![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
+```
 # Clean up Quay
 sh clear-quay.sh
 ```
