@@ -1,6 +1,6 @@
-# docker-compose for Red Hat Quay 
+# docker-compose for Red Hat Quay
 
-It's a docker-compose for Quay community/enterprise POC quick solution 
+It's a docker-compose for Quay community/enterprise POC quick solution
 
 Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installation"to support Quay community.
 
@@ -13,9 +13,18 @@ Quay Dockerfile
 
 For Clair Deployment, Please revise clair-config/config.yaml based on your real environment.
 
-Notes: you have to deploy DNS for Quay and Clair, for example: 
+Notes:
+1. you have to deploy DNS for Quay and Clair, for example:
+
 quay01.test.com
 clair.test.com`
+
+2. For single clair , Don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
+![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
+
+3. For clair HA , You have to create a Key ID and Private Key (PEM). for example:
+
+wget https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha
 
 Please refer to the official doc below.
 
@@ -24,7 +33,7 @@ Please refer to the official doc below.
 [Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
 ## Quay Deployment
 ```
-# Generate self certification 
+# Generate self certification
 ./self-cert-generate.sh test.com registry.test01.com test01.com test01
 
 # Deploy Quay
@@ -65,14 +74,14 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 #for pgsql
 sudo docker-compose  -f docker-compose.quay-pgsql.yml up -d
 
-# Verify the Clair service 
+# Verify the Clair service
 $  curl -X GET -I http://172.31.0.65:6061/health
 HTTP/1.1 200 OK
 Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 ```
-# Check the status of images Scan 
+# Check the status of images Scan
 ![Quay HA](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
 ```
