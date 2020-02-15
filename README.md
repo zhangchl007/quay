@@ -18,7 +18,7 @@ Notes:
 
    quay01.test.com
 
-   clair.test.com`
+   clair.test.com
 
 2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
@@ -30,6 +30,12 @@ Notes:
 3. For clair HA , you have to create a Key ID and Private Key (PEM). Please refer to config below::
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
+
+     For example, those two value might now appear as:
+
+      key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
+
+      private_key_path: /clair/config/security_scanner.pem
 
    For the partner integretion, Please refer to the official doc below.
 
