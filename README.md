@@ -16,8 +16,9 @@ For Clair Deployment, Please revise clair-config/config.yaml based on your real 
 Notes:
 1. you have to deploy DNS for Quay and Clair, for example:
 
-quay01.test.com
-clair.test.com`
+   quay01.test.com
+
+   clair.test.com`
 
 2. For single clair , Don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
