@@ -23,7 +23,7 @@ Notes:
 2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
 
-  Please refer to the config file below:
+     Please refer to the config file below:
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
@@ -53,7 +53,10 @@ sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
 sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
 ```
 # Generate config file via web GUI
-For example: http://quay01.test.com/8443
+Please type the access web url of Quay config container, for example:
+
+http://quay01.test.com/8443
+
 username/password: quayconfig/redhat
 
 # Set pgsql db connection
