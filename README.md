@@ -17,7 +17,7 @@ For the Partner integretion, Please refer to the official doc below.
 
 [Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
 
-#For MySQL, deploy Red Hat Quay 
+# For MySQL, deploy Red Hat Quay 
 ```
 # Generate self certification
 ./self-cert-generate.sh test.com registry.test01.com test01.com test01
@@ -40,11 +40,10 @@ cd /quay/config && tar -zxvf quay-config.tar.gz
 sudo sh ./pre-deleteconfig.sh
 
 # Start mysql
-#for mysql
 sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
 ```
-# For Clair Deployment,  The option is PostgreSQL(pgsql)
+# For Clair Deployment(PostgreSQL)
 
 # Deploy DNS for Quay and Clair 
    ```
