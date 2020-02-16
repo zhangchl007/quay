@@ -43,9 +43,9 @@ sudo sh ./pre-deleteconfig.sh
 sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
 ```
-# For Clair Deployment(PostgreSQL)
+# For PostgreSQL, deploy Red Hat Quay with Clair
 
-# Deploy DNS for Quay and Clair 
+# Deploy DNS for Quay
    ```
    For example, add two lines into dnsmasq.conf as below:
 
@@ -61,24 +61,25 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
    dig@{hostip} clair.test.com
    ```
-# Deploy Red Hat Quay
-    # Generate self certification
+# Deploy quayconfig container
+   # Generate self certification
 
    ./self-cert-generate.sh test.com quay01.test.com test.com test
 
-   #Create Directory for Quay
+   # Create Directory for Quay
 
    sudo sh pre-quaydeploy.sh
 
    # Create the quayconfig container
 
    sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
+
    sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
 
 # Generate config file via web GUI
-Please type the access web url of Quay config container, for example:
+Please type the access web url of Quay config container, 
 
-http://quay01.test.com/8443
+for example: http://quay01.test.com/8443
 
 username/password: quayconfig/redhat
 
@@ -94,7 +95,7 @@ Set registry with  tls
 
 ![username](https://github.com/zhangchl007/quay/blob/master/img/ssl.png)
 
-## Enabling Clair on a Red Hat Quay Basic or HA deployment
+## Enabling Clair on a Quay Basic or HA deployment
 
 Please create a Key ID and Private Key (PEM).
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/key-id.png)
@@ -169,7 +170,7 @@ time="2020-02-16T02:45:39Z" level=info msg="Starting forward proxy (Listening on
 jwtproxy stderr | time="2020-02-16T02:45:39Z" level=info msg="Starting forward proxy (Listening on ':8081')"
 2020-02-16 02:45:39,930 INFO exited: jwtproxy (exit status 0; not expected)
 
-# solution 
+# solution
 option1
 docker-compose  -f docker-compose.quay-pgsql.yml stop
 docker-compose  -f docker-compose.quay-pgsql.yml rm -f
@@ -186,13 +187,13 @@ time="2020-02-16T02:33:42Z" level=info msg="No claims verifiers specified, upstr
 time="2020-02-16T02:33:42Z" level=info msg="Starting reverse proxy (Listening on ':6060')"
 time="2020-02-16T02:33:42Z" level=fatal msg="Got unexpected response from key server: 502: <html>
 
-# solution 
+# solution
 docker restart clair
 
 3. Issue3
 time="2020-02-16T09:45:59Z" level=fatal msg="pinging docker registry returned: Get https://quay02.test.com/v2/: x509: certificate signed by unknown authority"
 
-#solution 
+# solution
 cp /etc/pki/ca-trust/source/anchors/ca.crt  /quay/config/extra_ca_certs/
 docker restart worker
 ```
