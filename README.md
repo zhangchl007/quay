@@ -13,11 +13,9 @@ Quay Dockerfile
 
 For Clair Deployment, please revise clair-config/config.yaml based on your real environment.
 
-Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
+## Deploy DNS for Quay and Clair, for example:
 
-1. Deploy DNS for Quay and Clair, for example:
-
-   add two lines into dnsmasq.conf below.
+   Add two lines into dnsmasq.conf below:
 
    address=/quay01.test.com/192.168.0.17
 
@@ -29,8 +27,46 @@ Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
    dig@{hostip} quay01.test.com
    dig@{hostip} clair.test.com
    ```
+For the partner integretion, Please refer to the official doc below.
 
-2. Please create a Key ID and Private Key (PEM). 
+[Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
+
+[Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
+# Quay Deployment
+```
+# Generate self certification
+./self-cert-generate.sh test.com registry.test01.com test01.com test01
+
+# Deploy Quay
+# create Directory for Quay
+sudo sh pre-quaydeploy.sh
+
+# Create the quayconfig container
+#for mysql
+sudo docker-compose  -f docker-compose.config-mysql.yml up -d
+#for pgsql
+sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
+sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
+```
+# Generate config file via web GUI
+Please type the access web url of Quay config container, for example:
+
+http://quay01.test.com/8443
+
+username/password: quayconfig/redhat
+
+Set pgsql db connection
+![dbconn](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
+
+Set username/password
+![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
+
+ Download Quay config file
+![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
+
+## Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
+
+Please create a Key ID and Private Key (PEM).
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/key-id.png)
 
      For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
@@ -49,43 +85,6 @@ Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
       key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
       private_key_path: /clair/config/security_scanner.pem
-
-4. For the partner integretion, Please refer to the official doc below.
-
-   [Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
-
-   [Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
-## Quay Deployment
-```
-# Generate self certification
-./self-cert-generate.sh test.com registry.test01.com test01.com test01
-
-# Deploy Quay
-# create Directory for Quay
-sudo sh pre-quaydeploy.sh
-
-# Create the quayconfig container
-#for mysql
-sudo docker-compose  -f docker-compose.config-mysql.yml up -d
-#for pgsql
-sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
-sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
-```
-Generate config file via web GUI
-Please type the access web url of Quay config container, for example:
-
-http://quay01.test.com/8443
-
-username/password: quayconfig/redhat
-
-Set pgsql db connection
-![dbconn](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
-
-Set username/password
-![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
-
- Download Quay config file
-![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 ```
 # upload the Quay config file and uncompress it
@@ -108,7 +107,6 @@ Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 ```
-
 Check the status of images Scan
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
