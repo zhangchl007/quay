@@ -83,7 +83,7 @@ key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
 private_key_path: /clair/config/security_scanner.pem
 
-Download Quay config file
+# Download Quay config file
 
 ![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
