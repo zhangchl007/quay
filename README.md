@@ -17,10 +17,6 @@ Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
 
 1. Deploy DNS for Quay and Clair, for example:
 
-   quay01.test.com
-
-   clair.test.com
-   
    add two lines into dnsmasq.conf below.
 
    address=/quay01.test.com/192.168.0.17
@@ -48,7 +44,7 @@ Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
-     For example, those two value might now appear as:
+     Please replace those two value as below:
 
       key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
