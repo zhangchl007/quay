@@ -66,7 +66,7 @@ Set username/password
 Please create a Key ID and Private Key (PEM).
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/key-id.png)
 
-     For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
+For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![AERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
 
 Please refer to the config file below:
@@ -83,7 +83,7 @@ key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
 private_key_path: /clair/config/security_scanner.pem
 
-#Download Quay config file
+Download Quay config file
 ![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 ```
