@@ -119,6 +119,7 @@ private_key_path: /clair/config/security_scanner.pem
 ## Add repository mirroring Red Hat Quay
 
 Enable repository mirroring:
+
 ![mirroring](https://github.com/zhangchl007/quay/blob/master/img/mirror.png)
 
 
@@ -148,9 +149,11 @@ Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 ```
 Check the status of images Scan
+
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
 Check the status of mirrored repository
+
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/mirror03.png)
 
 # Clean up Quay
