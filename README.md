@@ -61,9 +61,6 @@ Set pgsql db connection
 Set username/password
 ![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
- Download Quay config file
-![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
-
 ## Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
 
 Please create a Key ID and Private Key (PEM).
@@ -72,19 +69,22 @@ Please create a Key ID and Private Key (PEM).
      For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
 ![AERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
 
-     Please refer to the config file below:
+Please refer to the config file below:
 
-     [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
+[config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
-     For clair HA, Please refer to config below::
+For clair HA, Please refer to config below::
 
-     [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
+[config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
-     Please replace those two value as below:
+Please replace those two value as below:
 
-      key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
+key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
-      private_key_path: /clair/config/security_scanner.pem
+private_key_path: /clair/config/security_scanner.pem
+
+#Download Quay config file
+![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 ```
 # upload the Quay config file and uncompress it
