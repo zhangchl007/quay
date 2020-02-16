@@ -13,21 +13,38 @@ Quay Dockerfile
 
 For Clair Deployment, please revise clair-config/config.yaml based on your real environment.
 
-Notes:
+Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
+
 1. Deploy DNS for Quay and Clair, for example:
 
    quay01.test.com
 
    clair.test.com
+   
+   add two lines into dnsmasq.conf below.
 
-2. For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
-![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
+   address=/quay01.test.com/192.168.0.17
+
+   address=/clair.test.com/192.168.0.17
+
+   Start and verity dnsmasq service
+   ```
+   docker-compose -f docker-compose.dnsmasq.yml up -d
+   dig@{hostip} quay01.test.com
+   dig@{hostip} clair.test.com
+   ```
+
+2. Please create a Key ID and Private Key (PEM). 
+![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/key-id.png)
+
+     For single clair , don't forget to approve CLAIR_SERVICE_KEY_ID once Quay is ready
+![AERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/single-quay.png)
 
      Please refer to the config file below:
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
-3. For clair HA , Please create a Key ID and Private Key (PEM). Please refer to config below::
+     For clair HA, Please refer to config below::
 
      [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
@@ -58,20 +75,20 @@ sudo docker-compose  -f docker-compose.config-mysql.yml up -d
 sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
 sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
 ```
-# Generate config file via web GUI
+Generate config file via web GUI
 Please type the access web url of Quay config container, for example:
 
 http://quay01.test.com/8443
 
 username/password: quayconfig/redhat
 
-# Set pgsql db connection
+Set pgsql db connection
 ![dbconn](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
 
-# Set username/password
+Set username/password
 ![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
-# Download Quay config file
+ Download Quay config file
 ![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
 
 ```
@@ -96,10 +113,10 @@ Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 ```
 
-# Check the status of images Scan
+Check the status of images Scan
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
-```
 # Clean up Quay
+```
 sh clear-quay.sh
 ```
