@@ -83,12 +83,15 @@ http://quay01.test.com/8443
 username/password: quayconfig/redhat
 
 Set pgsql db connection
+
 ![dbconn](https://github.com/zhangchl007/quay/blob/master/img/db-connection.png)
 
 Set username/password
+
 ![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
 Set registry with  tls  
+
 ![username](https://github.com/zhangchl007/quay/blob/master/img/ssl.png)
 
 ## Enabling Clair on a Red Hat Quay Basic or HA deployment
