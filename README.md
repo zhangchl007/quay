@@ -154,7 +154,7 @@ Check the status of images Scan
 
 Check the status of mirrored repository
 
-![image status ](https://github.com/zhangchl007/quay/blob/master/img/mirror03.png)
+![image status ](https://github.com/zhangchl007/quay/blob/master/img/mirror02.png)
 
 # Clean up Quay
 ```
