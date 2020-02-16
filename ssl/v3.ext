@@ -4,6 +4,6 @@ keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 extendedKeyUsage = serverAuth 
 subjectAltName = @alt_names
 [alt_names]
-DNS.1=registry.test01.com
-DNS.2=test01.com
-DNS.3=test01
+DNS.1=quay01.test.com
+DNS.2=test.com
+DNS.3=test

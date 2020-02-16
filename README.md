@@ -11,43 +11,71 @@ Quay Dockerfile
 
 [Quay Image Build](https://github.com/quay/quay/blob/master/docs/development-container.md)
 
-For Clair Deployment, please revise clair-config/config.yaml based on your real environment.
+For the Partner integretion, Please refer to the official doc below.
 
-## Deploy DNS for Quay and Clair, for example:
+[Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
 
-   Add two lines into dnsmasq.conf below:
+[Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
+
+#For MySQL, deploy Red Hat Quay 
+```
+# Generate self certification
+./self-cert-generate.sh test.com registry.test01.com test01.com test01
+
+# Create Directory for Quay
+sudo sh pre-quaydeploy.sh
+
+# Create the quayconfig container
+sudo docker-compose  -f docker-compose.config-mysql.yml up -d
+
+# Generate config file via web GUI
+
+Please refer to the steps for pgsql
+
+# upload the Quay config file and uncompress it
+sudo mv quay-config.tar.gz  /quay/config
+cd /quay/config && tar -zxvf quay-config.tar.gz
+
+# Delete the quayconfig and Stop redis and mysql container
+sudo sh ./pre-deleteconfig.sh
+
+# Start mysql
+#for mysql
+sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
+
+```
+# For Clair Deployment,  The option is PostgreSQL(pgsql)
+
+# Deploy DNS for Quay and Clair 
+   ```
+   For example, add two lines into dnsmasq.conf as below:
 
    address=/quay01.test.com/192.168.0.17
 
    address=/clair.test.com/192.168.0.17
 
    Start and verity dnsmasq service
-   ```
+
    docker-compose -f docker-compose.dnsmasq.yml up -d
+
    dig@{hostip} quay01.test.com
+
    dig@{hostip} clair.test.com
    ```
-For the partner integretion, Please refer to the official doc below.
+# Deploy Red Hat Quay
+    # Generate self certification
 
-[Clair Scan Deployment](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_red_hat_quay/index#quay-security-scanner)
+   ./self-cert-generate.sh test.com quay01.test.com test.com test
 
-[Clair Integrations](https://github.com/quay/clair/blob/master/Documentation/integrations.md)
-# Quay Deployment
-```
-# Generate self certification
-./self-cert-generate.sh test.com registry.test01.com test01.com test01
+   #Create Directory for Quay
 
-# Deploy Quay
-# create Directory for Quay
-sudo sh pre-quaydeploy.sh
+   sudo sh pre-quaydeploy.sh
 
-# Create the quayconfig container
-#for mysql
-sudo docker-compose  -f docker-compose.config-mysql.yml up -d
-#for pgsql
-sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
-sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
-```
+   # Create the quayconfig container
+
+   sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
+   sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
+
 # Generate config file via web GUI
 Please type the access web url of Quay config container, for example:
 
@@ -61,7 +89,10 @@ Set pgsql db connection
 Set username/password
 ![username](https://github.com/zhangchl007/quay/blob/master/img/username.png)
 
-## Notes: Enabling Clair on a Red Hat Quay Basic or HA deployment
+Set registry with  tls  
+![username](https://github.com/zhangchl007/quay/blob/master/img/ssl.png)
+
+## Enabling Clair on a Red Hat Quay Basic or HA deployment
 
 Please create a Key ID and Private Key (PEM).
 ![ERVICE_KEY_ID](https://github.com/zhangchl007/quay/blob/master/img/key-id.png)
@@ -83,6 +114,12 @@ key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
 private_key_path: /clair/config/security_scanner.pem
 
+## Add repository mirroring Red Hat Quay
+
+Enable repository mirroring:
+![mirroring](https://github.com/zhangchl007/quay/blob/master/img/mirror.png)
+
+
 # Download Quay config file
 
 ![quay config](https://github.com/zhangchl007/quay/blob/master/img/config.png)
@@ -95,11 +132,11 @@ cd /quay/config && tar -zxvf quay-config.tar.gz
 # Delete the quayconfig and Stop redis and mysql/pgsqlcontainer
 sudo sh ./pre-deleteconfig.sh
 
-# Start mysql, redis and Quay
-#for mysql
-sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
-#for pgsql
+# Start pgsql, redis and Quay
+for clair
 sudo docker-compose  -f docker-compose.quay-pgsql.yml up -d
+for mirror
+docker-compose  -f docker-compose.quay-pgsql-mirror.yml up -d
 
 # Verify the Clair service
 $  curl -X GET -I http://172.31.0.65:6061/health
@@ -111,7 +148,46 @@ Content-Length: 0
 Check the status of images Scan
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
+Check the status of mirrored repository
+![image status ](https://github.com/zhangchl007/quay/blob/master/img/mirror03.png)
+
 # Clean up Quay
 ```
 sh clear-quay.sh
+```
+# Troubleshooting 
+```
+1. Issue1
+time="2020-02-16T02:45:39Z" level=info msg="Starting reverse proxy (Listening on 'unix:/tmp/jwtproxy_secscan.sock')"
+time="2020-02-16T02:45:39Z" level=error msg="Failed to start reverse proxy: listen unix /tmp/jwtproxy_secscan.sock: bind: address already in use"
+time="2020-02-16T02:45:39Z" level=info msg="Starting forward proxy (Listening on ':8081')"
+jwtproxy stderr | time="2020-02-16T02:45:39Z" level=info msg="Starting forward proxy (Listening on ':8081')"
+2020-02-16 02:45:39,930 INFO exited: jwtproxy (exit status 0; not expected)
+
+# solution 
+option1
+docker-compose  -f docker-compose.quay-pgsql.yml stop
+docker-compose  -f docker-compose.quay-pgsql.yml rm -f
+docker-compose  -f docker-compose.quay-pgsql.yml up -d
+
+option2
+docker exec -it quay sh -c "ss -ntpul |grep proxy"
+docker exec -it quay sh -c "rm /tmp/jwtproxy_secscan.sock"
+docker restart quay
+
+2. Issue2
+2020-02-16 02:33:42,355 INFO spawned: 'jwtproxy' with pid 126
+time="2020-02-16T02:33:42Z" level=info msg="No claims verifiers specified, upstream should be configured to verify authorization"
+time="2020-02-16T02:33:42Z" level=info msg="Starting reverse proxy (Listening on ':6060')"
+time="2020-02-16T02:33:42Z" level=fatal msg="Got unexpected response from key server: 502: <html>
+
+# solution 
+docker restart clair
+
+3. Issue3
+time="2020-02-16T09:45:59Z" level=fatal msg="pinging docker registry returned: Get https://quay02.test.com/v2/: x509: certificate signed by unknown authority"
+
+#solution 
+cp /etc/pki/ca-trust/source/anchors/ca.crt  /quay/config/extra_ca_certs/
+docker restart worker
 ```

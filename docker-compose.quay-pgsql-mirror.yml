@@ -20,6 +20,18 @@ services:
     depends_on:
       - redis
       - pgsql
+  worker:
+    image: quay.io/redhat/quay:v3.2.1
+    container_name: worker
+    restart: always
+    volumes:
+      - /quay/config:/conf/stack:Z
+    networks:
+      - quay
+    command:
+      ["repomirror"]
+    depends_on:
+      - quay
   clair:
     image: quay.io/redhat/clair-jwt:v3.2.1
     container_name: clair
@@ -34,6 +46,7 @@ services:
       - 6061:6061
     depends_on:
       - quay
+      - worker
   pgsql:
     image: registry.access.redhat.com/rhscl/postgresql-96-rhel7
     container_name: pgsql
