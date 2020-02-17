@@ -194,6 +194,6 @@ docker restart clair
 time="2020-02-16T09:45:59Z" level=fatal msg="pinging docker registry returned: Get https://quay02.test.com/v2/: x509: certificate signed by unknown authority"
 
 # solution
-cp /etc/pki/ca-trust/source/anchors/ca.crt  /quay/config/extra_ca_certs/
+cp mirror quay's ca.crt  /quay/config/extra_ca_certs/
 docker restart worker
 ```
