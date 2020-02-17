@@ -106,7 +106,7 @@ Please refer to the config file below:
 
 [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml)
 
-For Quay HA, Please refer to config below::
+For Quay HA, Please refer to the config file(also works  for single Quay) below:
 
 [config file](https://raw.githubusercontent.com/zhangchl007/quay/master/clair-config/config.yaml-ha)
 
