@@ -39,7 +39,7 @@ cd /quay/config && tar -zxvf quay-config.tar.gz
 # Delete the quayconfig and Stop redis and mysql container
 sudo sh ./pre-deleteconfig.sh
 
-# Start mysql
+# Start Quay, MySQL and Redis
 sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
 ```
@@ -117,7 +117,7 @@ key_id: { 4fb9063a7cac00b567ee921065ed16fed7227afd806b4d67cc82de67d8c781b1 }
 
 private_key_path: /clair/config/security_scanner.pem
 
-## Add repository mirroring Red Hat Quay
+## Add repository mirroring
 
 Enable repository mirroring:
 
@@ -149,11 +149,11 @@ Server: clair
 Date: Sat, 11 Jan 2020 11:21:24 GMT
 Content-Length: 0
 ```
-Check the status of images Scan
+## Check the status of images Scan
 
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/clair.png)
 
-Check the status of mirrored repository
+## Check the status of mirrored repository
 
 ![image status ](https://github.com/zhangchl007/quay/blob/master/img/mirror02.png)
 
