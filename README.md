@@ -59,7 +59,8 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
    dig@{hostip} clair.test.com
    ```
-   # Deploy quayconfig container
+# Deploy quayconfig container
+   ```
    # Generate self certification
 
    ./self-cert-generate.sh test.com quay01.test.com test.com test
@@ -73,9 +74,9 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
    sudo docker-compose  -f docker-compose.config-pgsql.yml up -d
 
    sudo docker-compose -f docker-compose.config-pgsql.yml exec pgsql /bin/bash /usr/local/bin/post-pgsql.sh
-
+   ```
 # Generate config file via web GUI
-Please type the access web url of Quay config container, 
+Please type the access web url of Quay config container 
 
 for example: http://quay01.test.com/8443
 
@@ -192,6 +193,6 @@ docker restart clair
 time="2020-02-16T09:45:59Z" level=fatal msg="pinging docker registry returned: Get https://quay02.test.com/v2/: x509: certificate signed by unknown authority"
 
 # solution
-cp mirror quay's ca.crt  /quay/config/extra_ca_certs/
+cp mirror Quay's ca.crt  /quay/config/extra_ca_certs/
 docker restart worker
 ```
