@@ -29,7 +29,6 @@ sudo sh pre-quaydeploy.sh
 sudo docker-compose  -f docker-compose.config-mysql.yml up -d
 
 # Generate config file via web GUI
-
 Please refer to the steps for pgsql
 
 # upload the Quay config file and uncompress it
@@ -41,7 +40,6 @@ sudo sh ./pre-deleteconfig.sh
 
 # Start Quay, MySQL and Redis
 sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
-
 ```
 # For PostgreSQL, deploy Red Hat Quay with Clair
 
@@ -61,7 +59,7 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
 
    dig@{hostip} clair.test.com
    ```
-# Deploy quayconfig container
+   # Deploy quayconfig container
    # Generate self certification
 
    ./self-cert-generate.sh test.com quay01.test.com test.com test
