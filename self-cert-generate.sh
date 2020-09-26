@@ -2,7 +2,7 @@
 #CA
 Sub_make_ca() {
 openssl genrsa -out ca.key 4096
-openssl req -newkey rsa:4096 -nodes -sha256 -keyout ca.key -x509 -days 365 -out ca.crt
+openssl req -newkey rsa:4096 -nodes -sha256 -keyout ca.key -x509 -days 7300 -out ca.crt
 
 # Domain crt
 openssl genrsa -out $1.key 4096
@@ -22,7 +22,7 @@ DNS.2=$2
 DNS.3=$3
 EOF
 
-openssl x509 -req -sha512 -days 3650 \
+openssl x509 -req -sha512 -days 7300 \
     -extfile v3.ext \
     -CA ca.crt -CAkey ca.key -CAcreateserial \
     -in $1.csr \
