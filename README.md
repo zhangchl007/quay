@@ -7,7 +7,7 @@ Add new environment varible "ENCRYPTED_ROBOT_TOKEN_MIGRATION_PHASE=new-installat
 If you adopt the Quay HA, Please refer to the following link:
 [Quay HA](https://github.com/zhangchl007/quay-ha)
 
-[Quay Dockerfile](https://github.com/quay/quay/blob/master/Dockerfile.rhel8)
+[Quay Dockerfile](https://github.com/quay/quay/blob/master/Dockerfile)
 
 [Quay Image Build](https://github.com/quay/quay/blob/master/docs/development-container.md)
 
