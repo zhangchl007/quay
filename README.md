@@ -1,4 +1,4 @@
-# docker-compose for Red Hat Quay
+# docker-compose for Red Hat Quay v3.6.1
 
 It's a docker-compose for Quay community/enterprise POC quick solution
 
@@ -20,7 +20,7 @@ For the Partner integretion, Please refer to the official doc below.
 # For MySQL, deploy Red Hat Quay 
 ```
 # Generate self certification
-./self-cert-generate.sh test.com registry.test01.com test01.com
+./self-cert-generate.sh registry.test01.com test01.com
 
 # Create Directory for Quay
 sudo sh pre-quaydeploy.sh
