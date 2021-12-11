@@ -20,7 +20,7 @@ For the Partner integretion, Please refer to the official doc below.
 # For MySQL, deploy Red Hat Quay 
 ```
 # Generate self certification
-./self-cert-generate.sh test.com registry.test01.com test01.com test01
+./self-cert-generate.sh test.com registry.test01.com test01.com
 
 # Create Directory for Quay
 sudo sh pre-quaydeploy.sh

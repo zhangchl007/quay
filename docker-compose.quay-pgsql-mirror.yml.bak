@@ -32,6 +32,23 @@ services:
       ["repomirror"]
     depends_on:
       - quay
+  clair:
+    image: registry.redhat.io/quay/clair-rhel8:v3.6.1
+    container_name: clair
+    restart: always
+    volumes:
+      - ./clair-config:/clair/config:Z
+      - ./ssl/ca.crt:/etc/pki/ca-trust/source/anchors/ca.crt:Z
+    networks:
+      - quay
+    ports:
+      - 6060:6060
+      - 6061:6061
+    environment:
+      - CLAIR_CONF=/clair-config/config.yaml
+    depends_on:
+      - quay
+      - worker
   pgsql:
     image: registry.redhat.io/rhel8/postgresql-10:1
     container_name: pgsql

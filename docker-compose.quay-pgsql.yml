@@ -1,7 +1,7 @@
 version: '3'
 services:
   quay:
-    image: quay.io/redhat/quay:v3.2.1
+    image: registry.redhat.io/quay/quay-rhel8:v3.6.1
     container_name: quay
     restart: always
     privileged: true
@@ -21,7 +21,7 @@ services:
       - redis
       - pgsql
   clair:
-    image: quay.io/redhat/clair-jwt:v3.2.1
+    image: registry.redhat.io/quay/clair-rhel8:v3.6.1
     container_name: clair
     restart: always
     volumes:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - quay
   pgsql:
-    image: registry.access.redhat.com/rhscl/postgresql-96-rhel7
+    image: registry.redhat.io/rhel8/postgresql-10:1
     container_name: pgsql
     restart: always
     privileged: true
@@ -50,8 +50,9 @@ services:
       - POSTGRESQL_USER=quayuser
       - POSTGRESQL_PASSWORD=quaypass
       - POSTGRESQL_DATABASE=quaydb
+      - POSTGRESQL_MAX_CONNECTIONS=500
   redis:
-    image: registry.access.redhat.com/rhscl/redis-32-rhel7
+    image: registry.redhat.io/rhel8/redis-5:1
     container_name: redis
     restart: always
     privileged: true
@@ -61,6 +62,8 @@ services:
       - quay
     ports:
       - 6379:6379
+    environment:
+      - REDIS_PASSWORD=test123
     depends_on:
       - pgsql
 networks:
