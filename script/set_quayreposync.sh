@@ -63,7 +63,11 @@ do
 {
 "external_reference": "$dst_api/$org/$repo",
 "external_registry_username": "admin",
+<<<<<<< HEAD
 "external_registry_password": "New.xxxxx760",
+=======
+"external_registry_password": "New.xxx560",
+>>>>>>> 5e3812dadf762e7571fa954ef3ed537228f4060c
 "sync_interval": 1200,
 "sync_start_date": "2021-12-10T14:20:00Z",
 "robot_username": "$org+mirrorsa",

@@ -122,6 +122,12 @@ Enable repository mirroring:
 
 ![mirroring](https://github.com/zhangchl007/quay/blob/master/img/mirror.png)
 
+## The mirroring of all images from quay to other registries
+
+The mirroring of repository is a little complicated, I wrote the script:mirror-all-images-bytags.sh under the script directory
+
+![image status ](https://github.com/zhangchl007/quay/blob/master/img/sync01.png)
+![image status ](https://github.com/zhangchl007/quay/blob/master/img/sync02.png)
 
 # Download Quay config file
 
