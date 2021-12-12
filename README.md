@@ -63,7 +63,7 @@ sudo docker-compose  -f docker-compose.quay-mysql.yml up -d
    ```
    # Generate self certification
 
-   ./self-cert-generate.sh test.com quay01.test.com test.com test
+   ./self-cert-generate.sh quay01.test.com test.com
 
    # Create Directory for Quay
 
